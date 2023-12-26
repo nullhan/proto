@@ -16,7 +16,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     // base: './',
     // 适配github pages
-    base: 'proto',
+    base: '/proto/',
     mode: mode,
     build: {
       target: 'esnext', // 将目标环境设置为 esnext
