@@ -1,0 +1,85 @@
+{
+  // 指定要包含在编译中的文件和模式
+  "include": [
+    "env.d.ts",
+    "src/types/global.d.ts",
+    "src/**/*",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+  ],
+  // 指定要从编译中排除的文件和模式
+  "exclude": [
+    "node_modules"
+  ],
+  "compilerOptions": {
+    // 允许编译器编译 JavaScript 文件
+    "allowJs": true,
+    // 用于解析非绝对模块名称的基准目录
+    "baseUrl": "./",
+    // 为了支持 CommonJS 和 ES6 之间的默认导入，启用精确的 ECMAScript 模块间操作性。
+    "esModuleInterop": true,
+    // 确保所有导入的文件名都具有一致的大小写，避免文件名大小写敏感的问题。
+    "forceConsistentCasingInFileNames": true,
+    // 确保每个文件都被当作独立模块进行处理，这与 @babel/transform-typescript-plugin 的处理方式一致
+    "isolatedModules": true,
+    // 保留 JSX 语法，然后由其他工具(如 Babel)进行转换。
+    "jsx": "preserve",
+    // 指定要包含在编译中的库文件。包含最新的 ECMAScript 功能 和 浏览器 DOM 特性
+    "lib": [
+      // "ESNext",
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    // 指定模块代码生成的方式，此处将输出 ES 模块
+    "module": "esnext",
+    // 模块解析策略，在 Node.js 中使用
+    "moduleResolution": "node",
+    // 生成相对应的 .map 文件来为源码提供调试支持
+    "sourceMap": true,
+    // 允许从没有默认导出的模块中导入其默认导出的同义词
+    "allowSyntheticDefaultImports": true,
+    // 设置导入值的语义，以匹配 ECMAScript 语法及其行为
+    // "preserveValueImports": true,
+    // 其他选项
+    // "verbatimModuleSyntax": true,
+    // 允许从 JSON 文件中导入数据
+    "resolveJsonModule": true,
+    // 跳过类型声明文件（.d.ts）的类型检查
+    "skipLibCheck": true,
+    // 启用所有严格类型检查选项，例如 noImplicitAny、strictNullChecks 等
+    "strict": true,
+    // 设置要生成的 ECMAScript 目标版本
+    "target": "ESNext",
+    // 启用实验性支持以进行 ECMAScript 提案的 `class` 字段
+    "useDefineForClassFields": true,
+    // 包含声明文件以供全局使用，无需导入。这里包括了 'tdesign-vue-next' 的全局类型声明
+    "types": [
+      "tdesign-vue-next/global"
+    ],
+    // 定义一个路径别名 "@"，将它映射到 "./src/*" 目录
+    "paths": {
+      "@/*": [
+        "./src/*",
+      ],
+      /* "vue-router": [
+        "node_modules/vue-router/dist/vue-router.esm-browser.d.ts"
+      ] */
+    }
+  },
+  // 明确指定要包含在 TypeScript 编译过程中的文件列表
+  "files": [],
+  // 与此项目关联的子项目的引用
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ]
+}
