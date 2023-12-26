@@ -38,17 +38,45 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Set up Node
         uses: actions/setup-node@v4.0.1
         with:
           node-version: 18
-          cache: 'npm'
+         # cache: 'npm'
+
+      - name: Set Pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+          # run_install: |
+          #   - recursive: true
+          #     args: [--frozen-lockfile, --strict-peer-dependencies]
+          #   - args: [--global, gulp, prettier, typescript]
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+            echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+                ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
+
       - name: Build
         run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
