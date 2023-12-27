@@ -6,13 +6,16 @@
     "src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
+    "src/**/*.vue"
   ],
   // 指定要从编译中排除的文件和模式
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/__tests__/*"
   ],
   "compilerOptions": {
+    // "noEmit": false,
+    // "declaration": true,
     // 允许编译器编译 JavaScript 文件
     "allowJs": true,
     // 用于解析非绝对模块名称的基准目录
@@ -55,9 +58,9 @@
     // 启用实验性支持以进行 ECMAScript 提案的 `class` 字段
     "useDefineForClassFields": true,
     // 包含声明文件以供全局使用，无需导入。这里包括了 'tdesign-vue-next' 的全局类型声明
-    "types": [
+    /* "types": [
       "tdesign-vue-next/global"
-    ],
+    ], */
     // 定义一个路径别名 "@"，将它映射到 "./src/*" 目录
     "paths": {
       "@/*": [
